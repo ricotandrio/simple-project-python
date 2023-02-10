@@ -1,7 +1,7 @@
 import random
 import time
 
-#global variable
+# global variable
 data = []
 indexP = 0
 
@@ -21,6 +21,7 @@ def insert():
         except  ValueError:
             print(end = '')
 
+    # create stock code
     print("    success added new stock named {} with stock code ".format(name), end = '')
     stockCode = ""
     for i in range (0, 6):
@@ -36,12 +37,14 @@ def insert():
     print("    press enter to continue...")
     input("    >> ")    
 
+    # create stock type
     index = price * ((int(random.random() * 1000) % 100) + 1)
     while(index > 8562):
         index = (price / ((((int)(random.random() * 1000) % 37) + 1) * 2)) * (((int)(random.random() * 1000) % 100) + 1)
     
     global indexP
     global data
+    # validate stock type
     if 5708 <= index <= 8562:
         data.append([name, stockCode, "blue chip", price])
     elif 2854 <= index <= 5707:
@@ -88,6 +91,7 @@ def delete():
             print("    no | stock name | stock code | stock label | price")
             for i in range (0, indexP):
                 print("    {}  | {:<10} | {:<10} | {:<10} | {:<10}".format(i+1, data[i][0], data[i][1], data[i][2], float(data[i][3])))
+            # collect user input for the stock code of the stock that want to be removed
             codeToDelete = str(input("    input the stock code [<= 9 characters][case insensitive][type 'back' to abort the deletion]: "))
             if codeToDelete == "back":
                 print("    deletion progess is aborted!")
@@ -139,7 +143,7 @@ def exit():
     # credit
     clear()
     print("""
-    Thanks for using my app
+    Thank you for using my app. The original program was written by 22-1 using C Language
     """)
     
 def main():
