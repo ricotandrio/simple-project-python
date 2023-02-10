@@ -143,7 +143,7 @@ def exit():
     # credit
     clear()
     print("""
-    Thank you for using my app. The original program was written by 22-1 using C Language
+    Thank you. The original program was written by 22-1 using C Language
     """)
     
 def main():
