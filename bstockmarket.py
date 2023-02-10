@@ -62,10 +62,11 @@ def viewall():
         print("    there are no stocks, consider to add one")
     else:
         idxComposite = 0
-        print("    no | stock name | stock code | stock label | price")
+        print("    no  | stock name           | stock code      | stock label     | price")
+        print("    ===================================================================================")
         for i in range (0, indexP):
             idxComposite = idxComposite + int(data[i][3])
-            print("    {}  | {:<10} | {:<10} | {:<10} | {:<10}".format(i+1, data[i][0], data[i][1], data[i][2], data[i][3]))
+            print("    {:<3} | {:<20} | {:<15} | {:<15} | {:<15}".format(i+1, data[i][0], data[i][1], data[i][2], float(data[i][3])))
         print("")
         print(idxComposite)
         print(idxComposite/3)
@@ -88,9 +89,10 @@ def delete():
             if indexP == 0:
                 print("    there are no stocks, consider to add one")
                 break
-            print("    no | stock name | stock code | stock label | price")
+            print("    no  | stock name           | stock code      | stock label     | price")
+            print("    ===================================================================================")
             for i in range (0, indexP):
-                print("    {}  | {:<10} | {:<10} | {:<10} | {:<10}".format(i+1, data[i][0], data[i][1], data[i][2], float(data[i][3])))
+                print("    {:<3} | {:<20} | {:<15} | {:<15} | {:<15}".format(i+1, data[i][0], data[i][1], data[i][2], float(data[i][3])))
             # collect user input for the stock code of the stock that want to be removed
             codeToDelete = str(input("    input the stock code [<= 9 characters][case insensitive][type 'back' to abort the deletion]: "))
             if codeToDelete == "back":
