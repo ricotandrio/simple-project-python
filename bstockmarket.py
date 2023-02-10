@@ -6,6 +6,7 @@ data = []
 indexP = 0
 
 def insert():
+    # insert stock name, generate stock code, validate stock type, and insert stock price
     clear()
     random.seed(time.time())
     length = 1
@@ -50,6 +51,7 @@ def insert():
     indexP = indexP + 1
 
 def viewall():
+    # display all stocks that have been added
     clear()
     global indexP
     global data
@@ -70,6 +72,7 @@ def viewall():
     input("    press enter to continue...")
 
 def delete():
+    # delete or remove specific stock that has been added
     clear()
     global indexP
     global data
@@ -105,10 +108,12 @@ def delete():
     input("    press enter to continue...")
 
 def clear():
+    # insert a gap between each iteration of a loop
     for i in range (10):
         print("")
 
 def mainMenu():
+    # main menu
     clear()
     global indexP
     print("")
@@ -121,7 +126,7 @@ def mainMenu():
     """, end = '')
     x = 1
     while True:
-        try:
+        try: 
             x = int(input(">> "))
             if 1 <= x <= 4:
                 return x
@@ -131,11 +136,10 @@ def mainMenu():
             print("    [!] Invalid input is not integer")
 
 def exit():
+    # credit
     clear()
     print("""
-    Alongside courage and perseverance
-    we shape and define our future
-    ~ 22 - 1
+    Thanks for using the app
     """)
     
 def main():
