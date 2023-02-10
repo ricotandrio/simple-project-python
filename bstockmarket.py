@@ -139,7 +139,7 @@ def exit():
     # credit
     clear()
     print("""
-    Thanks for using the app
+    Thanks for using my app
     """)
     
 def main():
