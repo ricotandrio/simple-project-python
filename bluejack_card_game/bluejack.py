@@ -123,25 +123,25 @@ def writeData():
     global database
     global totalIndex
     try:
-        with open("SuperS3cr3tFile.dat", "w") as file:
+        with open("bluejack_card_game/SuperS3cr3tFile.dat", "w") as file:
             for i in range(0, totalIndex):
                 encM = fernet.encrypt(database[i].encode())
                 file.write(encM.decode() + "\n")
     except FileNotFoundError:
-        with open("SuperS3cr3tFile.dat", "w") as file:
+        with open("bluejack_card_game/SuperS3cr3tFile.dat", "w") as file:
             pass
 
 def readFile():
     global database
     global totalIndex
     try:
-        with open("SuperS3cr3tFile.dat", "r") as file:
+        with open("bluejack_card_game/SuperS3cr3tFile.dat", "r") as file:
             for i in file:
                 totalIndex = totalIndex + 1
                 i = fernet.decrypt(i.encode()).decode()
                 database.append(i.strip())
     except FileNotFoundError:
-        with open("SuperS3cr3tFile.dat", "w") as file:
+        with open("bluejack_card_game/SuperS3cr3tFile.dat", "w") as file:
             pass
 
 def mainMenuGame():
@@ -335,12 +335,12 @@ def main():
 # create one key that used to encrypt all registered account
 # key will stored in token.dat
 try:
-    with open("token.dat", "r") as file:
+    with open("bluejack_card_game/token.dat", "r") as file:
         key = file.readline()
         if not key:
             raise FileNotFoundError
 except FileNotFoundError:
-    with open("token.dat", "wb") as file:
+    with open("bluejack_card_game/token.dat", "wb") as file:
         key = Fernet.generate_key()
         file.write(key)
         file.close()
