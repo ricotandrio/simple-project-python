@@ -197,8 +197,11 @@ def play():
     player = 0
     playerCard = []
     match = 0
+    choose = 0
     while dealer <= 21 and player <= 21 and match < 4:
-        os.system("cls")
+        # os.system("cls")
+        
+        print(" Match:", match)
         print(" Dealer Card : \n ")
         temp = 0
         for i in dealerCard:
@@ -228,28 +231,36 @@ def play():
                 print("A", end = ' | ')
             else:
                 print(i, end = ' | ')
-        valueCard = getCardValue(card[currIndex])
-        dealer += valueCard
-        dealerCard.append(str(card[currIndex]))
-        valueCard = getCardValue(card[currIndex + 1])
-        player += valueCard
-        playerCard.append(str(card[currIndex + 1]))
-        currIndex += 2
+        
         print("\n\n Choose your move:")
         print(" 1. Hit")
         print(" 2. Stand")
+        
         try:
-            choose = int(input(" Choose[1 - 2] >> "))
+            choose = int(input(" Choose[1 - 2] >> ")) 
+            onlyOne = 0
             if not 1 <= choose <= 2:
                 raise ValueError
         except ValueError:
             print(end = '')
-        if choose == 2:
+        
+        if choose == 1:
+            valueCard = getCardValue(card[currIndex])
+            dealer += valueCard
+            dealerCard.append(str(card[currIndex]))
+            valueCard = getCardValue(card[currIndex + 1])
+            player += valueCard
+            playerCard.append(str(card[currIndex + 1]))
+            currIndex = currIndex + 2
+            
+        if choose == 2 or (match + 1) == 4 or dealer >= 21 or player >= 21:
             break
+        choose = -1
         match = match + 1
 
     print("\n")
-    os.system("cls")
+    # os.system("cls")
+    print(" Match:", match)
     print(" Dealer Card : \n ")
     for i in dealerCard:
         if i == "11":
@@ -277,10 +288,10 @@ def play():
     print("\n")
     if (dealer > 21 and player > 21) or (player == dealer):
         print(" [!] It's tie, you got nothing")
-    elif (dealer > 21) or (player > dealer):
+    elif (dealer > 21) or (player > dealer and player <= 21):
         print(" [!] The dealer busted, you won", bet, "point(s)")
         currPoint = currPoint + bet
-    elif (player > 21) or (player < dealer):
+    elif (player > 21) or (player < dealer and dealer <= 21):
         print(" [!]", currName, "Busted, You lost", bet, "point(s)")
         currPoint = currPoint - bet
         
