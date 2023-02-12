@@ -197,12 +197,13 @@ def play():
     player = 0
     playerCard = []
     match = 0
-    choose = 0
+    aceP = 0
+    aceD = 0
     while dealer <= 21 and player <= 21 and match < 4:
-        # os.system("cls")
+        os.system("cls")
         
         print(" Match:", match)
-        print(" Dealer Card : \n ")
+        print(" Dealer Card :", dealer, "\n ")
         temp = 0
         for i in dealerCard:
             if temp == 0:
@@ -219,7 +220,7 @@ def play():
             else:
                 break
             temp = temp + 1
-        print("\n\n Player Card : \n ")
+        print("\n\n Player Card :", player, "\n ")
         for i in playerCard:
             if i == "11":
                 print("J", end = ' | ')
@@ -246,22 +247,46 @@ def play():
         
         if choose == 1:
             valueCard = getCardValue(card[currIndex])
-            dealer += valueCard
+            if card[currIndex] == 14:
+                aceD = aceD + 1
+                if (dealer + 10) <= 21:
+                    dealer = dealer + 10
+                else:
+                    dealer += valueCard
+            else:
+                dealer += valueCard
             dealerCard.append(str(card[currIndex]))
+            valueCard = 0
             valueCard = getCardValue(card[currIndex + 1])
-            player += valueCard
+            if card[currIndex + 1] == 14:
+                aceP = aceP + 1
+                if (player + 10) <= 21:
+                    player = player + 10
+                else:
+                    player += valueCard
+            else:
+                player += valueCard
             playerCard.append(str(card[currIndex + 1]))
             currIndex = currIndex + 2
+
+            # next step value >= 21 due to ace
+            if dealer > 21 and aceD > 0:
+                dealer = dealer - 9
+                aceD = 0
+            if player > 21 and aceP > 0:
+                player = player - 9
+                aceP = 0
             
         if choose == 2 or (match + 1) == 4 or dealer >= 21 or player >= 21:
             break
         choose = -1
         match = match + 1
+        valueCard = 0
 
     print("\n")
-    # os.system("cls")
+    os.system("cls")
     print(" Match:", match)
-    print(" Dealer Card : \n ")
+    print(" Dealer Card :", dealer, "\n ")
     for i in dealerCard:
         if i == "11":
             print("J", end = ' | ')
@@ -273,7 +298,7 @@ def play():
             print("A", end = ' | ')
         else:
             print(i, end = ' | ')
-    print("\n\n Player Card : \n ")
+    print("\n\n Player Card :", player, "\n ")
     for i in playerCard:
         if i == "11":
             print("J", end = ' | ')
