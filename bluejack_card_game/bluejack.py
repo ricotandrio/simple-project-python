@@ -203,7 +203,7 @@ def play():
         os.system("cls")
         
         print(" Match:", match)
-        print(" Dealer Card :", dealer, "\n ")
+        print(" Dealer Card : ?? \n ")
         temp = 0
         for i in dealerCard:
             if temp == 0:
@@ -256,7 +256,7 @@ def play():
             else:
                 dealer += valueCard
             dealerCard.append(str(card[currIndex]))
-            valueCard = 0
+
             valueCard = getCardValue(card[currIndex + 1])
             if card[currIndex + 1] == 14:
                 aceP = aceP + 1
@@ -267,7 +267,7 @@ def play():
             else:
                 player += valueCard
             playerCard.append(str(card[currIndex + 1]))
-            currIndex = currIndex + 2
+            currIndex = currIndex + 2 
 
             # next step value >= 21 due to ace
             if dealer > 21 and aceD > 0:
@@ -281,7 +281,6 @@ def play():
             break
         choose = -1
         match = match + 1
-        valueCard = 0
 
     print("\n")
     os.system("cls")
@@ -335,7 +334,7 @@ def highscore():
         n, ps, sc = database[i].split("#")
         newList.append([n, ps, int(sc)])
     
-    # sort list by point
+    # sort list by point    
     newList_sortbyPoint = sorted(newList, key = lambda a: a[2], reverse=True)
     print("\n Name       | Score")
     for nme, ps, scr in newList_sortbyPoint:
