@@ -14,5 +14,5 @@ Bluejack Card Game:
  - Store account details in a file.
  - Encrypts and decrypts data stored in the file.
  - See leaderboard.
- - Play Blackjack.
+ - Play Bluejack.
  - Record the game's progress.
